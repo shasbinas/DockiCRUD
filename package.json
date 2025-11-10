@@ -1,0 +1,27 @@
+{
+  "name": "dockicrud",
+  "version": "1.0.0",
+  "description": "Simple Docker-based CRUD API using Express and MongoDB.",
+  "main": "src/index.js",
+  "type": "module",
+  "scripts": {
+    "start": "node src/index.js",
+    "dev": "nodemon src/index.js"
+  },
+  "keywords": [
+    "docker",
+    "express",
+    "mongodb",
+    "crud"
+  ],
+  "author": "Your Name",
+  "license": "MIT",
+  "dependencies": {
+    "dotenv": "^16.4.0",
+    "express": "^4.19.2",
+    "mongoose": "^8.7.0"
+  },
+  "devDependencies": {
+    "nodemon": "^3.1.10"
+  }
+}
