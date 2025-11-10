@@ -8,14 +8,4 @@ services:
     environment:
       - PORT=${PORT}
       - MONGO_URL=${MONGO_URL}
-    depends_on:
-      - mongo
-
-  mongo:
-    image: mongo:latest
     restart: always
-    volumes:
-      - mongo_data:/data/db
-
-volumes:
-  mongo_data:

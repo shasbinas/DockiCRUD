@@ -1,20 +1,29 @@
 import express from "express";
 const router = express.Router();
+import mongoose from "mongoose";
 
-// Simple in-memory data
-let users = [];
+// create schema & model
+const userSchema = new mongoose.Schema({
+  name: String,
+  email: String,
+});
+const User = mongoose.model("User", userSchema);
 
-// Create user
-router.post("/users", (req, res) => {
-  const { name, email } = req.body;
-  if (!name || !email) return res.status(400).json({ message: "Missing fields" });
-  const user = { id: users.length + 1, name, email };
-  users.push(user);
-  res.status(201).json(user);
+// create user
+router.post("/users", async (req, res) => {
+  try {
+    const { name, email } = req.body;
+    const newUser = new User({ name, email });
+    await newUser.save();
+    res.status(201).json({ message: "User created", data: newUser });
+  } catch (err) {
+    res.status(500).json({ error: err.message });
+  }
 });
 
-// Get all users
-router.get("/users", (req, res) => {
+// get users
+router.get("/users", async (req, res) => {
+  const users = await User.find();
   res.json(users);
 });
 
